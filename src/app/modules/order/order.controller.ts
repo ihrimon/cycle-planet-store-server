@@ -3,10 +3,6 @@ import { orderServices } from './order.service';
 
 const createPaymentIntent = catchAsync(async (req, res) => {
   const { amount } = req.body;
-  if (!amount || isNaN(amount)) {
-    throw new Error('Invalid amount: Amount must be a number');
-  }
-
   const result = await orderServices.createPaymentIntent(amount);
 
   res.status(200).json({
@@ -26,20 +22,28 @@ const addPaymentDetails = catchAsync(async (req, res) => {
   });
 });
 
-const getOrder = catchAsync(async (req, res) => {
-  const result = await orderServices.getOrderFromDB(req.body);
+const getAllOrders = catchAsync(async (req, res) => {
+  const result = await orderServices.getAllOrdersFromDB();
 
   res.status(200).json({
     success: true,
-    message: 'Get order successfully!',
+    message: 'Get all orders successfully!',
+    data: result,
+  });
+});
+const getSingleOrder = catchAsync(async (req, res) => {
+  const result = await orderServices.getSingleOrderFromDB(req.params.id);
+
+  res.status(200).json({
+    success: true,
+    message: 'Get single order successfully!',
     data: result,
   });
 });
 
-
-
 export const orderControllers = {
   createPaymentIntent,
   addPaymentDetails,
-  getOrder,
+  getAllOrders,
+  getSingleOrder,
 };

@@ -15,15 +15,20 @@ const createPaymentIntent = async(amount: number) => {
   return {clientSecret: paymentIntent.client_secret}
 }
 
-const addPaymentDetails = async(payload: {transactionId: string, date: Date, status: string}) => {
+const addPaymentDetails = async(payload: IOrder) => {
   return await Order.create(payload);
 }
-const getOrderFromDB = async(payload: IOrder) => {
+
+const getAllOrdersFromDB = async () => {
   return await Order.find();
-}
+};
+
+const getSingleOrderFromDB = async (id: string) => {
+  return await Order.findById(id);
+};
 
 export const orderServices = {
   createPaymentIntent,
   addPaymentDetails,
-  getOrderFromDB,
-};
+  getAllOrdersFromDB,
+  getSingleOrderFromDB,};

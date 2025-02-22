@@ -1,4 +1,17 @@
-import { TBrakeType, TBrand, TCategory, TChainMaterial, TColorOptions, TDrivetrain, TForkMaterial, TFrameMaterial, THandlebarType, TSeatType, TSuspension, TTireType } from '../../interface';
+import {
+  TBrakeType,
+  TBrand,
+  TCategory,
+  TChainMaterial,
+  TColorOptions,
+  TDrivetrain,
+  TForkMaterial,
+  TFrameMaterial,
+  THandlebarType,
+  TSeatType,
+  TSuspension,
+  TTireType,
+} from '../../interface';
 
 export interface IDescription {
   shortDescription: string;
@@ -29,6 +42,7 @@ export interface ISpecification {
   countryOfOrigin: string;
 }
 
+// product interface
 export interface IProduct {
   name: string;
   category: TCategory;

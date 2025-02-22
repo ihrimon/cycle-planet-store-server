@@ -43,6 +43,7 @@ const createSpecificationValidationSchema = z.object({
   countryOfOrigin: z.string().min(2),
 });
 
+// create product validation schema
 const createProductValidationSchema = z.object({
   body: z.object({
     name: z.string().min(3),
@@ -98,6 +99,7 @@ const updateSpecificationValidationSchema = z.object({
   countryOfOrigin: z.string().min(2).optional(),
 });
 
+// update product validation schema
 const updateProductValidationSchema = z.object({
   body: z.object({
     name: z.string().min(3).optional(),

@@ -44,6 +44,7 @@ const SpecificationSchema = new Schema<ISpecification>({
   countryOfOrigin: { type: String, required: true },
 });
 
+// product schema model
 const ProductSchema = new Schema<IProduct>(
   {
     name: { type: String, required: true },

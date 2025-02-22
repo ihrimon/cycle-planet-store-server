@@ -6,6 +6,7 @@ const router = express.Router();
 router.post('/create-payment-intent', orderControllers.createPaymentIntent);
 
 router.post('/payment-details', orderControllers.addPaymentDetails);
-router.get('/', orderControllers.getOrder);
+router.get('/', orderControllers.getAllOrders);
+router.get('/:id', orderControllers.getSingleOrder);
 
 export const orderRoutes = router;
