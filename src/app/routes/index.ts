@@ -14,23 +14,23 @@ const moduleRoutes = [
     route: authRoutes,
   },
   {
-    path: '/customer',
+    path: '/customers',
     route: customerRoutes,
   },
   {
-    path: '/product',
+    path: '/products',
     route: productRoutes,
   },
   {
-    path: '/review',
+    path: '/reviews',
     route: reviewRoutes,
   },
   {
-    path: '/cart',
+    path: '/carts',
     route: shoppingCartRoutes,
   },
   {
-    path: '/order',
+    path: '/orders',
     route: orderRoutes,
   },
 ];

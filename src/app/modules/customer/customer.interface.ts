@@ -1,30 +1,34 @@
-import { Types } from 'mongoose';
+import { TGender, TOrderStatus, TPaymentMethod } from '../../interface';
+
+export interface IAddress {
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
+}
+
+export interface ICustomerOrder {
+  orderId: string;
+  date: Date;
+  items: string[];
+  totalAmount: number;
+  transactionId?: string;
+  status: TOrderStatus;
+}
 
 export interface ICustomer {
-  name: string;
+  fullName: string;
+  username: string;
   email: string;
   phone?: string;
-  address?: {
-    country: string;
-    state: string;
-    street: string;
-    city: string;
-    postalCode: string;
-  };
-  // orderHistory?: {
-  //   orderId: Types.ObjectId;
-  //   amount: number;
-  //   date: Date;
-  //   status: 'pending' | 'shipped' | 'delivered' | 'cancelled';
-  // }[];
-  // wishlist?: string[];
-  // cart?: {
-  //   productId: Types.ObjectId;
-  //   quantity: number;
-  // }[];
-  // reviews?: {
-  //   productId: Types.ObjectId;
-  //   rating: number;
-  //   comment?: string;
-  // }[];
+  profileImage?: string;
+  bio?: string;
+  gender?: TGender;
+  dob?: string;
+  billingAddress: IAddress;
+  shippingAddress?: IAddress;
+  paymentMethods?: TPaymentMethod;
+  orderHistory?: ICustomerOrder[];
+  wishlist?: string[];
 }

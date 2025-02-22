@@ -1,55 +1,48 @@
 import CustomError from '../../utils/CustomError';
 import { ICustomer } from './customer.interface';
 import { Customer } from './customer.model';
-import QueryBuilder from '../../utils/QueryBuilder';
-import { customerSearchableFields } from '../../constants';
 
-const getAllCustomersFromDB = async (query: Record<string, unknown>) => {
-  const customerQuery = new QueryBuilder(Customer.find(), query)
-    .search(customerSearchableFields)
-    .filter()
-    .sort()
-    .paginate()
-    .fields();
+// create a new customer
+const createCustomerIntoDB = async (payload: ICustomer) => {
+  const customer = await Customer.findOne({ email: payload.email });
+  if (customer)
+    throw new CustomError(409, 'Customer with this email already exists!');
 
-  const meta = await customerQuery.countTotal();
-  const result = await customerQuery.modelQuery;
-
-  return {
-    meta,
-    result,
-  };
+  return await Customer.create(payload);
 };
 
-const getSpecificCustomerFromDB = async (id: string) => {
-  return await Customer.findById(id);
+// get all customers
+const getAllCustomersFromDB = async () => {
+  return await Customer.find();
 };
 
+// get a single customer by ID
+const getCustomerByIdFromDB = async (id: string) => {
+  const customer = await Customer.findById(id);
+  return customer;
+};
+
+// Update a customer by ID
 const updateCustomerIntoDB = async (
   id: string,
-  payload: Partial<ICustomer>
+  updateData: Partial<ICustomer>
 ) => {
-  const user = await Customer.findById(id);
-  if (!user) throw new CustomError(404, 'Customer doesn"t exist!');
-
-  return await Customer.findByIdAndUpdate(id, payload, {
+  const updatedCustomer = await Customer.findByIdAndUpdate(id, updateData, {
     new: true,
     runValidators: true,
   });
+  return updatedCustomer;
 };
 
-const deleteCustomerFromDB = async (id: string) => {
-  return await Customer.findByIdAndDelete(id);
+// Delete a customer by ID
+const deleteCustomerFromDB = async (customerId: string) => {
+  return await Customer.findByIdAndDelete(customerId);
 };
 
-const getAuthenticateCustomer = async (userId: string) => {
-  return await Customer.findOne({ id: userId });
-};
-
-export const userServices = {
+export const customerServices = {
+  createCustomerIntoDB,
   getAllCustomersFromDB,
-  getSpecificCustomerFromDB,
+  getCustomerByIdFromDB,
   updateCustomerIntoDB,
   deleteCustomerFromDB,
-  getAuthenticateCustomer,
 };

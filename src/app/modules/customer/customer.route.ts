@@ -1,36 +1,24 @@
 import express from 'express';
-import { userControllers } from './customer.controller';
 import isValid from '../../middlewares/isValid';
-import { customerValidation } from './customer.validation';
 import isAuth from '../../middlewares/isAuth';
+import { customerValidation } from './customer.validation';
+import { customerControllers } from './customer.controller';
 
 const router = express.Router();
 
-router.get('/', isAuth('admin'), userControllers.getAllCustomers);
-
-router.get(
-  '/:id',
-  isAuth('admin', 'customer'),
-  userControllers.getSpecificUser
+router.post(
+  '/create',
+  isAuth('customer'),
+  isValid(customerValidation.createCustomerSchema),
+  customerControllers.createCustomer
 );
-
+router.get('/', isAuth('admin'), customerControllers.getAllCustomers);
+router.get('/:id', isAuth('admin', 'customer'), customerControllers.getCustomerById);
 router.put(
   '/:id',
-  isAuth('admin', 'customer'),
-  isValid(customerValidation.updateCustomerValidationSchema),
-  userControllers.updateCustomer
+  isAuth('customer'),
+  customerControllers.updateCustomer
 );
-
-router.delete(
-  '/:id',
-  isAuth('admin', 'customer'),
-  userControllers.deleteCustomer
-);
-
-router.get(
-  '/me',
-  isAuth('admin', 'customer'),
-  userControllers.getAuthenticatedCustomer
-);
+router.delete('/:id', isAuth('customer'), customerControllers.deleteCustomer);
 
 export const customerRoutes = router;

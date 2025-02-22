@@ -4,6 +4,8 @@ export type TUserStatus = 'active' | 'blocked';
 
 export type TCustomerStatus = 'in-progress' | 'blocked';
 
+export type TGender = 'male' | 'female' | 'other';
+
 export type TCategory =
   | 'mountain'
   | 'road'
@@ -30,3 +32,7 @@ export type TBrand =
   | 'merida';
 
 export type TStock = 'in-stock' | 'out-stock';
+
+export type TPaymentMethod = 'stripe';
+
+export type TOrderStatus = 'processing' | 'shipped' | 'delivered' | 'cancelled';

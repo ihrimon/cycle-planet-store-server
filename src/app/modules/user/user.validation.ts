@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { UserRole, UserStatus } from '../../constants';
 
+// create user validation schema
 const registerUserValidationSchema = z.object({
   body: z.object({
     name: z.string().min(1, 'Name is required'),
@@ -17,6 +18,7 @@ const registerUserValidationSchema = z.object({
   }),
 });
 
+// login user validation schema
 const loginUserValidationSchema = z.object({
   body: z.object({
     email: z.string({ required_error: 'Email is required.' }),
@@ -24,6 +26,7 @@ const loginUserValidationSchema = z.object({
   }),
 });
 
+// refresh token validation schema
 const refreshTokenValidationSchema = z.object({
   cookies: z.object({
     refreshToken: z.string({
@@ -32,6 +35,7 @@ const refreshTokenValidationSchema = z.object({
   }),
 });
 
+// change user status validation schema
 const changeUserStatusValidationSchema = z.object({
   body: z.object({
     status: z.enum([...UserStatus] as [string, ...string[]]),

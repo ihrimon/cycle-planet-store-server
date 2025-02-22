@@ -1,52 +1,42 @@
 import { model, Schema } from 'mongoose';
-import { ICustomer } from './customer.interface';
+import { IAddress, ICustomer, ICustomerOrder } from './customer.interface';
+import { Gender, OrderStatus, PaymentMethod } from '../../constants';
 
+// address schema
+const AddressSchema = new Schema<IAddress>({
+  street: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  zipCode: { type: String, required: true },
+  country: { type: String, required: true },
+});
+
+// customer order schema
+const CustomerOrderSchema = new Schema<ICustomerOrder>({
+  orderId: { type: String, required: true, unique: true },
+  date: { type: Date, required: true },
+  items: { type: [String], required: true },
+  totalAmount: { type: Number, required: true },
+  transactionId: { type: String },
+  status: { type: String, enum: OrderStatus, required: true },
+});
+
+// customer schema
 const CustomerSchema = new Schema<ICustomer>(
   {
-    name: {
-      type: String,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    phone: {
-      type: String,
-    },
-    address: {
-      street: { type: String },
-      city: { type: String },
-      zip: { type: String },
-      state: { type: String },
-      country: { type: String },
-    },
-    // orderHistory: [
-    //   {
-    //     orderId: { type: String, required: true },
-    //     amount: { type: Number, required: true },
-    //     date: { type: Date, required: true },
-    //     status: {
-    //       type: String,
-    //       enum: ['pending', 'shipped', 'delivered', 'cancelled'],
-    //       required: true,
-    //     },
-    //   },
-    // ],
-    // wishlist: [{ type: String }],
-    // cart: [
-    //   {
-    //     productId: { type: String, required: true },
-    //     quantity: { type: Number, required: true },
-    //   },
-    // ],
-    // reviews: [
-    //   {
-    //     productId: { type: String, required: true },
-    //     rating: { type: Number, required: true, min: 1, max: 5 },
-    //     comment: { type: String },
-    //   },
-    // ],
+    fullName: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String },
+    profileImage: { type: String },
+    bio: { type: String },
+    gender: { type: String, enum: Gender },
+    dob: { type: Date },
+    billingAddress: { type: AddressSchema, required: true },
+    shippingAddress: { type: AddressSchema },
+    paymentMethods: { type: String, enum: PaymentMethod },
+    orderHistory: { type: [CustomerOrderSchema] },
+    wishlist: { type: [String] },
   },
   { timestamps: true }
 );

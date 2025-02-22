@@ -2,6 +2,9 @@ import {
   TBrand,
   TCategory,
   TCustomerStatus,
+  TGender,
+  TOrderStatus,
+  TPaymentMethod,
   TStock,
   TUserRole,
   TUserStatus,
@@ -10,6 +13,9 @@ import {
 export const UserRole: TUserRole[] = ['admin', 'customer'];
 
 export const UserStatus: TUserStatus[] = ['active', 'blocked'];
+
+export const Gender: TGender[] = ['male', 'female', 'other'];
+
 
 export const CustomerStatus: TCustomerStatus[] = ['in-progress', 'blocked'];
 
@@ -41,6 +47,10 @@ export const BrandType: TBrand[] = [
 ];
 
 export const Stock: TStock[] = ['in-stock', 'out-stock'];
+
+export const PaymentMethod: TPaymentMethod[] = ['stripe'];
+
+export const OrderStatus: TOrderStatus[] = ['processing', 'shipped', 'delivered', 'cancelled'];
 
 export const customerSearchableFields = ['name', 'email', 'status'];
 

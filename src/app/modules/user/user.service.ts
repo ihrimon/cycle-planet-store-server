@@ -7,7 +7,7 @@ import checkPassword from '../../utils/checkPassword';
 import bcrypt from 'bcryptjs';
 import { User } from './user.model';
 
-// create customer
+// create user
 const registerUserIntoDB = async (payload: IUser) => {
   const { email, password: userPassword } = payload;
 
@@ -22,7 +22,7 @@ const registerUserIntoDB = async (payload: IUser) => {
   return await User.create({ ...payload, password: hashedPassword });
 };
 
-// login customer
+// login user
 const loginUserIntoDB = async (payload: {
   email: string;
   password: string;
