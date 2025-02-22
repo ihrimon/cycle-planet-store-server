@@ -4,6 +4,7 @@ import { uploadImageToCloudinary } from '../../utils/uploadImage';
 import { IProduct } from './product.interface';
 import { Product } from './product.model';
 
+// add a new product 
 const addProductIntoDB = async (
   files: Express.Multer.File[],
   payload: IProduct
@@ -15,6 +16,7 @@ const addProductIntoDB = async (
   return await Product.create(payload);
 };
 
+// fetch all products
 const getAllProductsFromDB = async (query: Record<string, unknown>) => {
   const productQuery = new QueryBuilder(Product.find(), query)
     .search(productSearchableFields)
@@ -32,15 +34,17 @@ const getAllProductsFromDB = async (query: Record<string, unknown>) => {
   };
 };
 
+// fetch specific product
 const getSpecificProductFromDB = async (id: string) => {
-  const result = await Product.findById(id);
-  return result;
+  return await Product.findById(id);
 };
 
+// update a product
 const updatedProductIntoDB = async (id: string, data: IProduct) => {
-  return await Product.findByIdAndUpdate(id, data, { new: true });
+  return await Product.findByIdAndUpdate(id, data, { new: true, runValidators: true });
 };
 
+// delete a product
 const deletedProductFromDB = async (id: string) => {
   return await Product.findByIdAndDelete(id);
 };

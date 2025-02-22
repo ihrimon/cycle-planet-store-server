@@ -1,38 +1,49 @@
 export type TUserRole = 'admin' | 'customer';
-
 export type TUserStatus = 'active' | 'blocked';
 
 export type TCustomerStatus = 'in-progress' | 'blocked';
-
-export type TGender = 'male' | 'female' | 'other';
+export type TGender = 'Male' | 'Female' | 'Other';
 
 export type TCategory =
-  | 'mountain'
-  | 'road'
-  | 'hybrid'
-  | 'bmx'
-  | 'electric'
-  | 'gravel'
-  | 'touring'
-  | 'cyclocross'
-  | 'cargo'
-  | 'track'
-  | 'kids';
-
+  | 'Mountain'
+  | 'Road'
+  | 'Hybrid'
+  | 'Bmx'
+  | 'Electric'
+  | 'Gravel'
+  | 'Touring'
+  | 'Cyclocross'
+  | 'Cargo'
+  | 'Track'
+  | 'Kids';
 export type TBrand =
-  | 'trek'
-  | 'specialized'
-  | 'giant'
-  | 'cannondale'
-  | 'scott'
-  | 'bianchi'
-  | 'cervelo'
-  | 'santa_cruz'
-  | 'orbea'
-  | 'merida';
+  | 'Trek'
+  | 'Specialized'
+  | 'Giant'
+  | 'Cannondale'
+  | 'Scott'
+  | 'Bianchi'
+  | 'Cervelo'
+  | 'Santa_cruz'
+  | 'Orbea'
+  | 'Merida';
 
-export type TStock = 'in-stock' | 'out-stock';
+export type TPaymentMethod = 'Stripe';
 
-export type TPaymentMethod = 'stripe';
+export type TOrderStatus = 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
 
-export type TOrderStatus = 'processing' | 'shipped' | 'delivered' | 'cancelled';
+// product specification
+export type TFrameMaterial = 'Aluminum' | 'Steel' | 'Carbon Fiber' | 'Titanium';
+export type TTireType = 'Tubeless' | 'Tube';
+export type TSuspension = 'Rigid' | 'Front Suspension' | 'Full Suspension';
+export type TBrakeType =
+  | 'Disc Brake'
+  | 'V-Brake'
+  | 'Coaster Brake'
+  | 'Hydraulic Brake';
+export type TColorOptions = 'Red' | 'Blue' | 'Black';
+export type THandlebarType = 'Flat' | 'Drop' | 'Bullhorn' | 'Aero';
+export type TSeatType = 'Standard' | 'Gel Cushion' | 'Racing' | 'Comfort';
+export type TForkMaterial = 'Aluminum' | 'Carbon Fiber' | 'Steel';
+export type TDrivetrain = 'Single Speed' | 'Derailleur' | 'Internal Hub';
+export type TChainMaterial = 'Steel' | 'Nickel-Plated';
