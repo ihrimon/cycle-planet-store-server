@@ -8,21 +8,21 @@ const router = express.Router();
 
 router.post(
   '/add',
-  // isAuth('customer'),
+  isAuth('customer'),
   isValid(shoppingCartValidation.addShoppingCartValidationSchema),
   shoppingCartControllers.addCart
 );
 router.get('/', shoppingCartControllers.getAllCarts);
 router.put(
   '/update/:id',
-  // isAuth('customer'),
+  isAuth('customer'),
   isValid(shoppingCartValidation.updateShoppingCartValidationSchema),
   shoppingCartControllers.updateCart
 );
 
 router.delete(
   '/:id',
-  // isAuth('customer', 'admin'),
+  isAuth('customer'),
   shoppingCartControllers.deleteCart
 );
 
