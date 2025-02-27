@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://cycle-planet-store.vercel.app',
     methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control'],
     credentials: true,
@@ -24,11 +24,12 @@ app.use(express.json());
 // application route for all api's
 app.use('/api', router);
 
-// Root Route
+// root route
 app.get('/', (req: Request, res: Response) => {
-  res.json({ 
+  res.json({
     success: true,
-    message: 'Welcome to Cycle Planet Store' });
+    message: 'Welcome to Cycle Planet Store 🚀',
+  });
 });
 
 // handle all error occurs
