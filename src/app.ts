@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import router from './app/routes';
@@ -23,6 +23,13 @@ app.use(express.json());
 
 // application route for all api's
 app.use('/api', router);
+
+// Root Route
+app.get('/', (req: Request, res: Response) => {
+  res.json({ 
+    success: true,
+    message: 'Welcome to Cycle Planet Store' });
+});
 
 // handle all error occurs
 app.use(globalErrorHandler);
