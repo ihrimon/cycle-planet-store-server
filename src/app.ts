@@ -4,6 +4,7 @@ import cors from 'cors';
 import router from './app/routes';
 import notFound from './app/middlewares/notFound';
 import globalErrorHandler from './app/middlewares/globalErrorhandler';
+import config from './app/config';
 
 /*** 'Cycle Planet Store' application ***/
 const app: Application = express();
@@ -13,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'https://cycle-planet-store.vercel.app',
+    origin: config.client_url,
     methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control'],
     credentials: true,
