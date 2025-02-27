@@ -13,7 +13,6 @@ export type TCategory =
   | 'Gravel'
   | 'Touring'
   | 'Cyclocross'
-  | 'Cargo'
   | 'Track'
   | 'Kids';
 export type TBrand =
@@ -24,7 +23,7 @@ export type TBrand =
   | 'Scott'
   | 'Bianchi'
   | 'Cervelo'
-  | 'Santa_cruz'
+  | 'Santa Cruz'
   | 'Orbea'
   | 'Merida';
 
@@ -34,16 +33,19 @@ export type TOrderStatus = 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
 
 // product specification
 export type TFrameMaterial = 'Aluminum' | 'Steel' | 'Carbon Fiber' | 'Titanium';
-export type TTireType = 'Tubeless' | 'Tube';
-export type TSuspension = 'Rigid' | 'Front Suspension' | 'Full Suspension';
+export type TTireType = 'Tubeless' | 'Tube' | 'Clincher';
+export type TSuspension = 'Rigid' | 'Front Suspension' | 'Full Suspension' | 'none';
 export type TBrakeType =
   | 'Disc Brake'
   | 'V-Brake'
   | 'Coaster Brake'
   | 'Hydraulic Brake';
-export type TColorOptions = 'Red' | 'Blue' | 'Black';
+export type TColorOptions = 'Red' | 'Blue' | 'Black' | 'Green';
 export type THandlebarType = 'Flat' | 'Drop' | 'Bullhorn' | 'Aero';
 export type TSeatType = 'Standard' | 'Gel Cushion' | 'Racing' | 'Comfort';
-export type TForkMaterial = 'Aluminum' | 'Carbon Fiber' | 'Steel';
-export type TDrivetrain = 'Single Speed' | 'Derailleur' | 'Internal Hub';
+export type TDrivetrain =
+  | 'Single Speed'
+  | 'Derailleur'
+  | 'Internal Hub'
+  | 'Shimano Di2';
 export type TChainMaterial = 'Steel' | 'Nickel-Plated';

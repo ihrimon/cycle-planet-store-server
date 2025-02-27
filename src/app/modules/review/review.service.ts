@@ -1,20 +1,10 @@
 import CustomError from '../../utils/CustomError';
+import { IUser } from '../user/user.interface';
 import { IReview } from './review.interface';
 import { Review } from './review.model';
-import QueryBuilder from '../../utils/QueryBuilder';
-import { IUser } from '../customer/customer.interface';
 
 const getAllReviewsFromDB = async (query: Record<string, unknown>) => {
-  const reviewQuery = new QueryBuilder(Review.find(), query)
-    .filter()
-    .sort()
-    .paginate()
-    .fields();
-
-  const meta = await reviewQuery.countTotal();
-  const result = await reviewQuery.modelQuery;
-
-  return { meta, result };
+  return await Review.find();
 };
 
 const getSpecificReviewFromDB = async (id: string) => {
@@ -47,16 +37,16 @@ const likeReviewIntoDB = async (id: string) => {
   return await review.save();
 };
 
-const addReplyToReviewIntoDB = async (
-  id: string,
-  reply: { replyUser: Partial<IUser>; replyText: string }
-) => {
-  const review = await Review.findById(id);
-  if (!review) throw new CustomError(404, 'Review not found!');
+// const addReplyToReviewIntoDB = async (
+//   id: string,
+//   reply: { replyUser: Partial<IUser>; replyText: string }
+// ) => {
+//   const review = await Review.findById(id);
+//   if (!review) throw new CustomError(404, 'Review not found!');
 
-  review.replies!.push({ ...reply, likes: 0 });
-  return await review.save();
-};
+//   review.replies!.push({ ...reply, likes: 0 });
+//   return await review.save();
+// };
 
 export const reviewServices = {
   getAllReviewsFromDB,
@@ -65,5 +55,5 @@ export const reviewServices = {
   updateReviewIntoDB,
   deleteReviewFromDB,
   likeReviewInDB: likeReviewIntoDB,
-  addReplyToReviewIntoDB,
+  // addReplyToReviewIntoDB,
 };

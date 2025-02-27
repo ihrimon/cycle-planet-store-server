@@ -1,6 +1,6 @@
 import { productSearchableFields } from '../../constants';
 import QueryBuilder from '../../utils/QueryBuilder';
-import { uploadImageToCloudinary } from '../../utils/uploadImage';
+import { uploadImageToCloudinary } from '../../utils/uploadImgToCloudinary';
 import { IProduct } from './product.interface';
 import { Product } from './product.model';
 
@@ -18,18 +18,17 @@ const addProductIntoDB = async (
 
 // fetch all products
 const getAllProductsFromDB = async (query: Record<string, unknown>) => {
-  const productQuery = new QueryBuilder(Product.find(), query)
-    .search(productSearchableFields)
-    .filter()
-    .sort()
-    .paginate()
-    .fields();
+  // const productQuery = new QueryBuilder(Product.find(), query)
+  //   .search(productSearchableFields)
+  //   .filter()
+  //   .sort()
+  //   .paginate()
+  //   .fields();
+  // const result = await productQuery.modelQuery;
 
-  const meta = await productQuery.countTotal();
-  const result = await productQuery.modelQuery;
+  const result = await Product.find();
 
   return {
-    meta,
     result,
   };
 };

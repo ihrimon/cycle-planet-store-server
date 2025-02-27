@@ -7,7 +7,6 @@ import {
   ChainMaterial,
   ColorOptions,
   Drivetrain,
-  ForkMaterial,
   FrameMaterial,
   HandlebarType,
   SeatType,
@@ -15,13 +14,14 @@ import {
   TireType,
 } from '../../constants';
 
-const DescriptionSchema = new Schema<IDescription>({
+const descriptionSchema = new Schema<IDescription>({
   shortDescription: { type: String, required: true },
   longDescription: { type: String, required: true },
   features: { type: [String], required: true },
+  warrantyInfo: { type: String, required: true },
 });
 
-const SpecificationSchema = new Schema<ISpecification>({
+const specificationSchema = new Schema<ISpecification>({
   frameMaterial: { type: String, enum: FrameMaterial, required: true },
   wheelSize: { type: Number, required: true },
   tireType: { type: String, enum: TireType, required: true },
@@ -32,20 +32,18 @@ const SpecificationSchema = new Schema<ISpecification>({
   colorOptions: { type: String, enum: ColorOptions, required: true },
   handlebarType: { type: String, enum: HandlebarType, required: true },
   seatType: { type: String, enum: SeatType, required: true },
-  forkMaterial: { type: String, enum: ForkMaterial, required: true },
   drivetrain: { type: String, enum: Drivetrain, required: true },
   chainMaterial: { type: String, enum: ChainMaterial, required: true },
   maxLoadCapacity: { type: Number, required: true },
-  lighting: { type: Boolean, required: true },
-  fenders: { type: Boolean, required: true },
-  cargoRack: { type: Boolean, required: true },
-  bottleHolder: { type: Boolean, required: true },
-  warranty: { type: String, required: true },
-  countryOfOrigin: { type: String, required: true },
+  lighting: { type: Boolean, default: true },
+  fenders: { type: Boolean, default: true },
+  cargoRack: { type: Boolean, default: true },
+  bottleHolder: { type: Boolean, default: true },
+  warranty: { type: Number, required: true },
 });
 
 // product schema model
-const ProductSchema = new Schema<IProduct>(
+const productSchema = new Schema<IProduct>(
   {
     name: { type: String, required: true },
     category: { type: String, enum: CategoryType, required: true },
@@ -53,20 +51,28 @@ const ProductSchema = new Schema<IProduct>(
     price: { type: Number, required: true },
     discountPrice: { type: Number, required: true },
     quantity: { type: Number, required: true },
-    inStock: { type: Boolean, required: true },
     productImg: { type: [String] },
-    description: { type: DescriptionSchema, required: true },
-    specification: { type: SpecificationSchema, required: true },
+    description: { type: descriptionSchema, required: true },
+    specification: { type: specificationSchema, required: true },
     sku: { type: String, unique: true },
     tags: { type: [String] },
-    averageRating: { type: Number, default: 0 },
-    reviewCount: { type: Number, default: 0 },
+    averageRating: { type: Number, default: 4.7 },
+    reviewCount: { type: Number, default: 27 },
+    inStock: { type: Boolean, default: true },
     isFeatured: { type: Boolean, default: false },
-    isNewArrival: { type: Boolean, default: false },
-    isBestSeller: { type: Boolean, default: false },
-    relatedProducts: { type: [String] },
+    isPopular: { type: Boolean, default: false },
+    addDate: {
+      type: String,
+      default: () => {
+        const date = new Date();
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+      },
+    },
   },
   { timestamps: true }
 );
 
-export const Product = model<IProduct>('Product', ProductSchema);
+export const Product = model<IProduct>('Product', productSchema);

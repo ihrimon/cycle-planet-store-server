@@ -48,7 +48,7 @@ const createCustomerSchema = z.object({
       .max(150, { message: 'Bio must be within 150 characters.' })
       .optional(),
     gender: z.enum([...Gender] as [string, ...string[]]).optional(),
-    dob: z
+    birthDate: z
       .string()
       .refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format.',

@@ -5,7 +5,6 @@ import {
   TChainMaterial,
   TColorOptions,
   TDrivetrain,
-  TForkMaterial,
   TFrameMaterial,
   THandlebarType,
   TSeatType,
@@ -17,29 +16,28 @@ export interface IDescription {
   shortDescription: string;
   longDescription: string;
   features: string[];
+  warrantyInfo: string;
 }
 
 export interface ISpecification {
-  frameMaterial: TFrameMaterial;
+  weight: number;
+  maxLoadCapacity: number;
+  warranty: number;
   wheelSize: number;
+  gearCount: number;
+  frameMaterial: TFrameMaterial;
   tireType: TTireType;
   suspension: TSuspension;
   brakeType: TBrakeType;
-  gearCount: number;
-  weight: number;
   colorOptions: TColorOptions;
   handlebarType: THandlebarType;
   seatType: TSeatType;
-  forkMaterial: TForkMaterial;
   drivetrain: TDrivetrain;
   chainMaterial: TChainMaterial;
-  maxLoadCapacity: number;
   lighting: boolean;
   fenders: boolean;
   cargoRack: boolean;
   bottleHolder: boolean;
-  warranty: string;
-  countryOfOrigin: string;
 }
 
 // product interface
@@ -48,18 +46,17 @@ export interface IProduct {
   category: TCategory;
   brand: TBrand;
   price: number;
-  discountPrice: number;
+  discountPrice?: number;
   quantity: number;
-  inStock: boolean;
-  productImg?: string[];
-  description: IDescription;
-  specification: ISpecification;
+  productImg: string[];
+  description?: IDescription;
+  specification?: ISpecification;
   sku?: string;
   tags?: string[];
   averageRating?: number;
   reviewCount?: number;
+  inStock?: boolean;
   isFeatured?: boolean;
-  isNewArrival?: boolean;
-  isBestSeller?: boolean;
-  relatedProducts?: string[];
+  isPopular?: boolean;
+  addDate?: Date; 
 }

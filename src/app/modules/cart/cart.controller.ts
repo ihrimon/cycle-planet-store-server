@@ -1,6 +1,6 @@
 import catchAsync from '../../utils/catchAsync';
 import CustomError from '../../utils/CustomError';
-import { reviewServices } from './shoppingCart.service';
+import { reviewServices } from './cart.service';
 
 const addCart = catchAsync(async (req, res) => {
   const result = await reviewServices.addCartIntoDB(req.body);

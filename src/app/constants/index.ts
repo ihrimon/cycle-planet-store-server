@@ -5,7 +5,6 @@ import {
   TChainMaterial,
   TColorOptions,
   TDrivetrain,
-  TForkMaterial,
   TFrameMaterial,
   TGender,
   THandlebarType,
@@ -43,7 +42,7 @@ export const BrandType: TBrand[] = [
   'Scott',
   'Bianchi',
   'Cervelo',
-  'Santa_cruz',
+  'Santa Cruz',
   'Orbea',
   'Merida',
 ];
@@ -67,11 +66,12 @@ export const FrameMaterial: TFrameMaterial[] = [
   'Carbon Fiber',
   'Titanium',
 ];
-export const TireType: TTireType[] = ['Tubeless', 'Tube'];
+export const TireType: TTireType[] = ['Tubeless', 'Tube', 'Clincher'];
 export const Suspension: TSuspension[] = [
   'Rigid',
   'Front Suspension',
   'Full Suspension',
+  'none'
 ];
 export const BrakeType: TBrakeType[] = [
   'Disc Brake',
@@ -79,7 +79,7 @@ export const BrakeType: TBrakeType[] = [
   'Coaster Brake',
   'Hydraulic Brake',
 ];
-export const ColorOptions: TColorOptions[] = ['Red', 'Blue', 'Black'];
+export const ColorOptions: TColorOptions[] = ['Red', 'Blue', 'Black', 'Green'];
 export const HandlebarType: THandlebarType[] = [
   'Flat',
   'Drop',
@@ -92,14 +92,10 @@ export const SeatType: TSeatType[] = [
   'Racing',
   'Comfort',
 ];
-export const ForkMaterial: TForkMaterial[] = [
-  'Aluminum',
-  'Carbon Fiber',
-  'Steel',
-];
 export const Drivetrain: TDrivetrain[] = [
   'Single Speed',
   'Derailleur',
   'Internal Hub',
+  'Shimano Di2',
 ];
 export const ChainMaterial: TChainMaterial[] = ['Steel', 'Nickel-Plated'];

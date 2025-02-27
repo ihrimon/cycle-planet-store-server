@@ -3,7 +3,7 @@ import { customerRoutes } from '../modules/customer/customer.route';
 import { productRoutes } from '../modules/product/product.route';
 import { authRoutes } from '../modules/user/user.route';
 import { reviewRoutes } from '../modules/review/review.route';
-import { shoppingCartRoutes } from '../modules/shoppingCart/shoppingCart.route';
+import { shoppingCartRoutes } from '../modules/cart/cart.route';
 import { orderRoutes } from '../modules/order/order.route';
 
 const router = express.Router();

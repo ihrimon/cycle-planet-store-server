@@ -14,10 +14,10 @@ router.delete(
   reviewControllers.deleteReview
 );
 router.post('/:id/like', isAuth('customer'), reviewControllers.likeReview);
-router.post(
-  '/:id/reply',
-  isAuth('customer'),
-  reviewControllers.addReplyToReview
-);
+// router.post(
+//   '/:id/reply',
+//   isAuth('customer'),
+//   reviewControllers.addReplyToReview
+// );
 
 export const reviewRoutes = router;

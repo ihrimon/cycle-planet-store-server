@@ -1,5 +1,5 @@
-import { IShoppingCart } from './shoppingCart.interface';
-import { ShoppingCart } from './shoppingCart.model';
+import { IShoppingCart } from './cart.interface';
+import { ShoppingCart } from './cart.model';
 
 const addCartIntoDB = async (payload: IShoppingCart) => {
   return await ShoppingCart.create(payload);

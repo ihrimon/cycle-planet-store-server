@@ -6,6 +6,7 @@ import { IUser } from './user.interface';
 import checkPassword from '../../utils/checkPassword';
 import bcrypt from 'bcryptjs';
 import { User } from './user.model';
+import generateHashedPassword from '../../utils/generateHashedPassword';
 
 // create user
 const registerUserIntoDB = async (payload: IUser) => {
@@ -14,7 +15,7 @@ const registerUserIntoDB = async (payload: IUser) => {
   const user = await User.findOne({ email });
   if (user) throw new CustomError(409, 'User already exist!');
 
-  const hashedPassword = await bcrypt.hash(
+  const hashedPassword = await generateHashedPassword(
     userPassword,
     Number(config.bcrypt_salt_round)
   );
@@ -85,7 +86,7 @@ const refreshToken = async (token: string) => {
 
 // change user status
 const changeUserStatus = async (id: string, payload: { status: string }) => {
-  const result =  await User.findByIdAndUpdate(id, payload, {
+  const result = await User.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,
   });

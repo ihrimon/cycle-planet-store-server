@@ -25,7 +25,7 @@ export interface ICustomer {
   profileImage?: string;
   bio?: string;
   gender?: TGender;
-  dob?: string;
+  birthDate?: string;
   billingAddress: IAddress;
   shippingAddress?: IAddress;
   paymentMethods?: TPaymentMethod;

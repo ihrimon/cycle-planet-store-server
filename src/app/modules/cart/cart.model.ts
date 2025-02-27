@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { IShoppingCart } from './shoppingCart.interface';
+import { IShoppingCart } from './cart.interface';
 
 const shoppingCartSchema = new Schema<IShoppingCart>(
   {

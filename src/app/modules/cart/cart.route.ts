@@ -1,8 +1,8 @@
 import express from 'express';
-import { shoppingCartControllers } from './shoppingCart.controller';
+import { shoppingCartControllers } from './cart.controller';
 import isAuth from '../../middlewares/isAuth';
 import isValid from '../../middlewares/isValid';
-import { shoppingCartValidation } from './shoppingCart.validation';
+import { shoppingCartValidation } from './cart.validation';
 
 const router = express.Router();
 

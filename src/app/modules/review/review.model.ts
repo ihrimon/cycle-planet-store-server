@@ -5,7 +5,7 @@ const reviewSchema = new Schema<IReview>(
   {
     reviewer: {
       type: Schema.Types.ObjectId,
-      ref: 'Product',
+      ref: 'Customer',
       required: true,
     },
     productId: {

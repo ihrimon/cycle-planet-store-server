@@ -11,14 +11,6 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   if (error instanceof ZodError) {
     statusCode = 400;
     message = 'Validation Error/Zod';
-    // res.status(statusCode).json({
-    //   success: false,
-    //   message,
-    //   statusCode,
-    //   error: error.issues,
-    //   stack: config.NODE_ENV === 'development' ? error.stack : null,
-    // });
-    // return;
   }
 
   // handle mongoose validation error
@@ -40,7 +32,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     statusCode = 409;
     message = `${extractedMessage} is already exists/DuplicateError`;
   }
-  
+
   // handle CustomError using class
   if (error instanceof CustomError) {
     statusCode = error?.statusCode;
