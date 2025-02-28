@@ -27,6 +27,7 @@ postcode: { type: String, required: true },
 const OrderSchema = new Schema<IOrder>({
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   cart: [{ type: Schema.Types.ObjectId, ref: 'Product', required: true }],
+  orderId: {type: String, requireed: true},
   billingInfo: { type: billingInfoSchema, required: true },
   shippingInfo: { type: shippingInfoSchema },
   transactionId: { type: String, required: true },

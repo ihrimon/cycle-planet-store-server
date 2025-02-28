@@ -26,6 +26,7 @@ export interface IShippingInfo {
 export interface IOrder {
   user: Types.ObjectId;
   cart: Types.ObjectId[];
+  orderId: string;
   billingInfo: IBillingInfo;
   shippingInfo?: IShippingInfo;
   transactionId: string;
