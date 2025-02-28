@@ -50,7 +50,9 @@ export const BrandType: TBrand[] = [
 export const PaymentMethod: TPaymentMethod[] = ['Stripe'];
 
 export const OrderStatus: TOrderStatus[] = [
+  'Pending',
   'Processing',
+  'Packed',
   'Shipped',
   'Delivered',
   'Cancelled',

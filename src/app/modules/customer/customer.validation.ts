@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { Gender, OrderStatus, PaymentMethod } from '../../constants';
+import { Gender, OrderStatus } from '../../constants';
 
 // address validation
-const AddressSchema = z.object({
+const addressSchema = z.object({
   street: z.string().min(1, { message: 'Street address is required!' }),
   city: z.string().min(1, { message: 'City name is required!' }),
   state: z.string().min(1, { message: 'State name is required!' }),
@@ -10,20 +10,6 @@ const AddressSchema = z.object({
     .string()
     .min(4, { message: 'Zip code must be at least 4 characters long!' }),
   country: z.string().min(1, { message: 'Country name is required!' }),
-});
-
-// customer order validation
-const CustomerOrderSchema = z.object({
-  date: z.string().refine((val) => !isNaN(Date.parse(val)), {
-    message: 'Invalid date format.',
-  }),
-  items: z
-    .array(z.string())
-    .min(1, { message: 'At least one item is required in the order.' }),
-  totalAmount: z
-    .number()
-    .positive({ message: 'Total amount must be a positive number.' }),
-  status: z.enum([...OrderStatus] as [string, ...string[]]).optional(),
 });
 
 // create customer validation
@@ -38,30 +24,15 @@ const createCustomerSchema = z.object({
     email: z
       .string({ required_error: 'Email is required' })
       .email({ message: 'Invalid email format.' }),
-    phone: z
-      .string()
-      .regex(/^\+?[0-9]{7,15}$/, { message: 'Invalid phone number format.' })
-      .optional(),
+    phone: z.string().optional(),
     profileImage: z.string().optional(),
     bio: z
       .string()
       .max(150, { message: 'Bio must be within 150 characters.' })
       .optional(),
     gender: z.enum([...Gender] as [string, ...string[]]).optional(),
-    birthDate: z
-      .string()
-      .refine((val) => !isNaN(Date.parse(val)), {
-        message: 'Invalid date format.',
-      })
-      .optional(),
-    billingAddress: AddressSchema,
-    shippingAddress: AddressSchema.optional(),
-    paymentMethods: z
-      .enum([...PaymentMethod] as [string, ...string[]])
-      .optional()
-      .optional(),
-    orderHistory: z.array(CustomerOrderSchema).optional(),
-    wishlist: z.array(z.string()).optional(),
+    billingAddress: addressSchema,
+    shippingAddress: addressSchema.optional(),
   }),
 });
 
@@ -127,17 +98,8 @@ const updateCustomerSchema = z.object({
       .max(150, { message: 'Bio must be within 150 characters.' })
       .optional(),
     gender: z.enum([...Gender] as [string, ...string[]]).optional(),
-    dob: z
-      .string()
-      .refine((val) => !isNaN(Date.parse(val)), {
-        message: 'Invalid date format.',
-      })
-      .optional(),
     billingAddress: updateAddressSchema.optional(),
     shippingAddress: updateAddressSchema.optional(),
-    paymentMethods: z.enum([...Gender] as [string, ...string[]]).optional(),
-    orderHistory: z.array(updateCustomerOrderSchema).optional(),
-    wishlist: z.array(z.string()).optional(),
   }),
 });
 

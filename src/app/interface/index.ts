@@ -29,12 +29,22 @@ export type TBrand =
 
 export type TPaymentMethod = 'Stripe';
 
-export type TOrderStatus = 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
+export type TOrderStatus =
+  | 'Pending'
+  | 'Processing'
+  | 'Packed'
+  | 'Shipped'
+  | 'Delivered'
+  | 'Cancelled';
 
 // product specification
 export type TFrameMaterial = 'Aluminum' | 'Steel' | 'Carbon Fiber' | 'Titanium';
 export type TTireType = 'Tubeless' | 'Tube' | 'Clincher';
-export type TSuspension = 'Rigid' | 'Front Suspension' | 'Full Suspension' | 'none';
+export type TSuspension =
+  | 'Rigid'
+  | 'Front Suspension'
+  | 'Full Suspension'
+  | 'none';
 export type TBrakeType =
   | 'Disc Brake'
   | 'V-Brake'

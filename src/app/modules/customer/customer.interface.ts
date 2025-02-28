@@ -30,5 +30,7 @@ export interface ICustomer {
   shippingAddress?: IAddress;
   paymentMethods?: TPaymentMethod;
   orderHistory?: ICustomerOrder[];
+  status: 'active' | 'blocked';
+  joinDate?: Date;
   wishlist?: string[];
 }

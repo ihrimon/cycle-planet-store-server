@@ -3,7 +3,7 @@ import { IAddress, ICustomer, ICustomerOrder } from './customer.interface';
 import { Gender, OrderStatus, PaymentMethod } from '../../constants';
 
 // address schema
-const AddressSchema = new Schema<IAddress>({
+const addressSchema = new Schema<IAddress>({
   street: { type: String, required: true },
   city: { type: String, required: true },
   state: { type: String, required: true },
@@ -12,7 +12,7 @@ const AddressSchema = new Schema<IAddress>({
 });
 
 // customer order schema
-const CustomerOrderSchema = new Schema<ICustomerOrder>({
+const customerOrderSchema = new Schema<ICustomerOrder>({
   orderId: { type: String, required: true, unique: true },
   date: { type: Date, required: true },
   items: { type: [String], required: true },
@@ -22,7 +22,7 @@ const CustomerOrderSchema = new Schema<ICustomerOrder>({
 });
 
 // customer schema
-const CustomerSchema = new Schema<ICustomer>(
+const customerSchema = new Schema<ICustomer>(
   {
     fullName: { type: String, required: true },
     username: { type: String, required: true, unique: true },
@@ -32,13 +32,21 @@ const CustomerSchema = new Schema<ICustomer>(
     bio: { type: String },
     gender: { type: String, enum: Gender },
     birthDate: { type: Date },
-    billingAddress: { type: AddressSchema, required: true },
-    shippingAddress: { type: AddressSchema },
+    status: {
+      type: String,
+      enum: ['active', 'blocked'],
+      default: 'active',
+    },
+    billingAddress: { type: addressSchema, required: true },
+    shippingAddress: { type: addressSchema },
     paymentMethods: { type: String, enum: PaymentMethod, default: 'Stripe' },
-    orderHistory: { type: [CustomerOrderSchema] },
+    orderHistory: { type: [customerOrderSchema] },
+    joinDate: { type: Date, default: Date.now },
     wishlist: { type: [String] },
   },
-  { timestamps: true }
+  { timestamps: true, 
+    versionKey: false,
+   }
 );
 
-export const Customer = model<ICustomer>('Customer', CustomerSchema);
+export const Customer = model<ICustomer>('Customer', customerSchema);
